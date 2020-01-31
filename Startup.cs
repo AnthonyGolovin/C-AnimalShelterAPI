@@ -10,9 +10,10 @@ using System;
 using System.Reflection;
 using System.IO;
 
-namespace AnimalShelter.Solution
+
+namespace AnimalShelter
 {
-  public class Startup
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -25,12 +26,13 @@ namespace AnimalShelter.Solution
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AnimalShelterContext>(opt =>
-                opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
             }); 
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,7 +52,6 @@ namespace AnimalShelter.Solution
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             }); 
-            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
