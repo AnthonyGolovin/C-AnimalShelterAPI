@@ -17,7 +17,7 @@ namespace AnimalShelter.Controllers
       _db = db;
     }
 
-    // GET api/animals
+    
     [HttpGet]
     public ActionResult<IEnumerable<Animal>> Get(string species, string name)
     {
